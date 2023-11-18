@@ -1,3 +1,5 @@
+const res = require("express/lib/response");
+
 const controller = {};
 
 controller.list = (req, res)=>{
@@ -12,5 +14,9 @@ controller.list = (req, res)=>{
         });
     });
 };
+
+controller.save = (req, res) => {
+    
+}
 
 module.exports = controller;
