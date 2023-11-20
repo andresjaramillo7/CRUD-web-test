@@ -3,7 +3,33 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-7">
-
+                <table class="table table-bordered table-hover table-striped table-dark shadow rounded">
+                    <thead>
+                        <tr>
+                            <th>nº</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (data) {%>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <tr>
+                                    <td><%= (i + 1) %></td>
+                                    <td><%= data[i].name %></td>
+                                    <td><%= data[i].address %></td>
+                                    <td><%= data[i].phone %></td>
+                                    <td>
+                                        <a href="/delete/<%= data[i].id %>" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="/update/<%= data[i].id %>" class="btn btn-info btn-sm">Update</a>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        <% }%>
+                    </tbody>
+                </table>
             </div>
             <div class="col-md-5">
                 <div class="card">

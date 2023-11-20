@@ -19,11 +19,12 @@ app.use(morgan('dev'));
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: 'AndresDev77.',
+    password: 'password',
     port: 3306,
     database: 'crud_test',
     insecureAuth: true
 }, 'single'));
+app.use(express.urlencoded({extended: false}))
 
 //routes
 app.use('/', customerRoutes);
