@@ -1,13 +1,17 @@
-const express = require('express');
-const path = require('path');
-const morgan = require('morgan');
-const mysql = require('mysql');
-const myConnection = require('express-myconnection');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import morgan from 'morgan';
+import mysql from 'mysql';
+import myConnection from 'express-myconnection';
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // importing routes
-const customerRoutes = require('./routes/customers');
+import customerRoutes from './routes/customers.mjs';
 
 // settings
 app.set('port', process.env.PORT || 3000);
