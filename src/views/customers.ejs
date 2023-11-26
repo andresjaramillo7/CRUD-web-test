@@ -3,6 +3,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-7">
+                <h2 class="text-white mb-3">Customer Table</h2>
                 <table class="table table-bordered table-hover table-striped table-dark shadow rounded">
                     <thead>
                         <tr>
@@ -34,6 +35,7 @@
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-body">
+                        <h5 class="card-title">Add Customer</h5>
                         <form action="/add" method="post">
                             <div class="form-group">
                                 <input type="text" name="name" placeholder="Name" class="form-control">
@@ -50,8 +52,28 @@
                         </form>
                     </div>
                 </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Filter</h5>
+                        <form id="searchForm">
+                            <div class="form-group">
+                                <input type="text" id="searchInputName" placeholder="Search customer's name..." autocomplete="off" oninput="filterTable()" class="form-control">
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" id="searchInputEmail" placeholder="Search customer's email..." autocomplete="off" oninput="filterTable()" class="form-control">
+                            </div>
+                            <div class="form-group mt-3">
+                                <input type="text" id="searchInputPhone" placeholder="Search customer's phone..." autocomplete="off" oninput="filterTable()" class="form-control">
+                            </div>
+                            <button type="button" class="btn btn-primary mt-3" onclick="resetSearch()">
+                                Reset
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <%- include('partials/_script') %>
     <%- include('partials/_footer') %>

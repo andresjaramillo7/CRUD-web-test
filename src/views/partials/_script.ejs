@@ -1,0 +1,46 @@
+<script>
+    function filterTable() {
+        const name = document.getElementById('searchInputName').value;
+        const email = document.getElementById('searchInputEmail').value;
+        const phone = document.getElementById('searchInputPhone').value;
+        
+        const queryParams = new URLSearchParams({
+            name,
+            email,
+            phone
+        }).toString();
+    
+        fetch(`/search?${queryParams}`)
+            .then(response => response.json())
+            .then(data => {
+                updateTable(data);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+    
+    function updateTable(customers) {
+        const tableBody = document.querySelector('.table tbody');
+        tableBody.innerHTML = '';
+    
+        customers.forEach((customer, index) => {
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.phone}</td>
+                    <td>
+                        <a href="/delete/${customer.id}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="/update/${customer.id}" class="btn btn-info btn-sm">Update</a>
+                    </td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    }
+    
+    function resetSearch() {
+        document.getElementById('searchForm').reset();
+        filterTable();
+    }
+    </script>

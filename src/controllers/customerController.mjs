@@ -56,4 +56,29 @@ controller.delete = (req, res) => {
     });
 };
 
+controller.search = (req, res) => {
+    const { name, email, phone } = req.query;
+    req.getConnection((err, conn) => {
+        if (err) {
+            res.status(500).send(err);
+            return;
+        }
+
+        const query = `
+            SELECT * FROM customer 
+            WHERE name LIKE ? 
+            AND email LIKE ? 
+            AND phone LIKE ?
+        `;
+        conn.query(query, [`%${name}%`, `%${email}%`, `%${phone}%`], (err, results) => {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+
+            res.json(results);
+        });
+    });
+};
+
 export default controller;

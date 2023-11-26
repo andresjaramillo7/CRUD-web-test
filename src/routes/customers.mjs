@@ -10,4 +10,6 @@ router.get('/delete/:id', customerController.delete);
 router.get('/update/:id', customerController.edit);
 router.post('/update/:id', customerController.update);
 
+router.get('/search', customerController.search)
+
 export default router;
